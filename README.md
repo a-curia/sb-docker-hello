@@ -46,3 +46,19 @@ application.properties, instead of the localhost mysql address, use the
 persistence container name.
 
  
+Docker and MySQL
+
+- pull the image and create the container with specific user and password
+$ docker run -p 3306:3306 --name mysqlserver -e MYSQL_ROOT_PASSWORD=password -d mysql:latest
+
+OR
+
+- pull the latest image
+$ docker pull mysql/mysql-server:latest
+- deploy the container
+$ docker run --name=mysql01 -d mysql/mysql-server:latest
+- get the default password
+$ docker logs mysql01
+- change the password with the desired password
+$ docker exec -it mysql01 mysql -uroot -p
+mysql# ALTER USER 'root'@'localhost' IDENTIFIED BY 'newpassword';
